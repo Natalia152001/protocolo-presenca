@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protocolo Presença — 21 dias para oratória, postura e autoridade</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:      #0D0D0F;
+  --ink-soft: #3A3A45;
+  --ink-faint:#6B7280;
+  --gold:     #C9A84C;
+  --gold-lt:  #E8C97A;
+  --gold-pale:#F7EDD0;
+  --cream:    #FAF8F3;
+  --white:    #FFFFFF;
+  --line:     rgba(201,168,76,0.20);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform .1s ease, width .25s, height .25s, background .25s;
+  mix-blend-mode: screen;
+}
+.cursor.expand { width: 40px; height: 40px; background: rgba(201,168,76,.35); }
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: .4;
+}
+
+/* ── TYPOGRAPHY ── */
+.serif { font-family: 'Cormorant Garamond', serif; }
+.mono  { font-family: 'DM Mono', monospace; }
+
+/* ── LAYOUT ── */
+section { position: relative; z-index: 1; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+.container-wide { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .22s; }
+.reveal-delay-3 { transition-delay: .36s; }
+.reveal-delay-4 { transition-delay: .5s; }
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  padding: 1.2rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(13,13,15,0);
+  transition: background .4s, backdrop-filter .4s, border-bottom .4s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(13,13,15,.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600;
+}
+.nav-cta {
+  background: var(--gold); color: var(--ink);
+  font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  padding: .55rem 1.4rem; border-radius: 2px; border: none; cursor: none;
+  transition: background .2s, transform .15s;
+  text-decoration: none; display: inline-block;
+}
+.nav-cta:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+
+/* Radial glow */
+#hero::after {
+  content: '';
+  position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Diagonal gold line */
+.hero-line {
+  position: absolute; top: 0; right: 15%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.3) 40%, rgba(201,168,76,.3) 60%, transparent);
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.6rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 28px; height: 1px; background: var(--gold);
+}
+
+.hero-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  font-weight: 300; line-height: 1.02;
+  color: var(--white); margin-bottom: 1rem;
+  letter-spacing: -.01em;
+}
+.hero-headline em {
+  font-style: italic; color: var(--gold-lt);
+}
+.hero-headline .outline-text {
+  -webkit-text-stroke: 1px rgba(255,255,255,.25);
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: 1rem; line-height: 1.75;
+  color: rgba(255,255,255,.6); max-width: 480px;
+  margin-bottom: 2.8rem;
+}
+
+.hero-cta-group { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+
+.btn-primary {
+  background: var(--gold); color: var(--ink);
+  font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  padding: 1rem 2.4rem; border-radius: 2px; border: none; cursor: none;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  text-decoration: none; display: inline-block;
+  box-shadow: 0 0 0 0 rgba(201,168,76,0);
+}
+.btn-primary:hover {
+  background: var(--gold-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,.25);
+}
+
+.btn-ghost {
+  background: transparent; color: rgba(255,255,255,.5);
+  font-size: .78rem; letter-spacing: .06em;
+  border: none; cursor: none; text-decoration: none;
+  display: flex; align-items: center; gap: .5rem;
+  transition: color .2s;
+}
+.btn-ghost:hover { color: var(--gold); }
+.btn-ghost::after { content: '↓'; }
+
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 4rem; padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.stat-item {}
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1;
+}
+.stat-label {
+  font-size: .72rem; color: rgba(255,255,255,.4);
+  letter-spacing: .08em; margin-top: .3rem;
+  font-family: 'DM Mono', monospace; text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   PROBLEMA
+══════════════════════════════════════ */
+#problema {
+  background: var(--cream); color: var(--ink);
+  padding: 7rem 2rem;
+}
+.problema-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.problema-text .eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.problema-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;
+  line-height: 1.2; color: var(--ink); margin-bottom: 1.5rem;
+}
+.problema-text h2 em { font-style: italic; color: var(--gold); }
+.problema-text p {
+  font-size: .93rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: 1rem;
+}
+
+.pain-list { display: flex; flex-direction: column; gap: .8rem; }
+.pain-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 1.2rem;
+  background: var(--white); border-radius: 8px;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: border-color .2s, transform .2s;
+}
+.pain-item:hover { border-color: var(--gold); transform: translateX(4px); }
+.pain-x { color: #D1D5DB; font-weight: 700; font-size: .9rem; flex-shrink: 0; margin-top: 1px; }
+.pain-text { font-size: .87rem; line-height: 1.55; color: var(--ink-soft); }
+
+/* ══════════════════════════════════════
+   SOLUÇÃO / O QUE É
+══════════════════════════════════════ */
+#solucao {
+  background: var(--ink);
+  padding: 7rem 2rem;
+  position: relative; overflow: hidden;
+}
+#solucao::before {
+  content: '';
+  position: absolute; bottom: -100px; right: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.06) 0%, transparent 70%);
+}
+
+.solucao-header { text-align: center; margin-bottom: 4rem; }
+.solucao-header .eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.solucao-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300;
+  line-height: 1.15; color: var(--white);
+}
+.solucao-header h2 em { font-style: italic; color: var(--gold-lt); }
+
+.semanas-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.semana-card {
+  border: 1px solid rgba(201,168,76,.15);
+  border-radius: 12px; padding: 2rem 1.6rem;
+  position: relative; overflow: hidden;
+  transition: border-color .3s, transform .3s;
+}
+.semana-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.semana-card::before {
+  content: attr(data-num);
+  position: absolute; top: -10px; right: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem; font-weight: 700; line-height: 1;
+  color: rgba(201,168,76,.06);
+  pointer-events: none;
+}
+.semana-label {
+  font-family: 'DM Mono', monospace; font-size: .62rem;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: .8rem;
+}
+.semana-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 400; color: var(--white);
+  margin-bottom: .8rem; line-height: 1.2;
+}
+.semana-desc {
+  font-size: .83rem; line-height: 1.65; color: rgba(255,255,255,.55);
+}
+.semana-days {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.2rem;
+}
+.day-pill {
+  font-family: 'DM Mono', monospace; font-size: .6rem;
+  background: rgba(201,168,76,.1); color: var(--gold-lt);
+  padding: .25rem .55rem; border-radius: 3px; letter-spacing: .06em;
+}
+
+/* Format box */
+.format-box {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line); border-radius: 12px;
+  padding: 2.5rem; display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1.5rem;
+  text-align: center;
+}
+.format-item {}
+.format-icon { font-size: 1.8rem; margin-bottom: .6rem; }
+.format-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 600; color: var(--gold); line-height: 1;
+}
+.format-label {
+  font-size: .73rem; color: rgba(255,255,255,.45);
+  font-family: 'DM Mono', monospace; letter-spacing: .08em;
+  text-transform: uppercase; margin-top: .3rem;
+}
+
+/* ══════════════════════════════════════
+   NEURO SECTION
+══════════════════════════════════════ */
+#neuro {
+  background: var(--gold-pale); color: var(--ink);
+  padding: 7rem 2rem;
+}
+.neuro-grid {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start;
+}
+.neuro-text .eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.neuro-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;
+  line-height: 1.2; color: var(--ink); margin-bottom: 1.5rem;
+}
+.neuro-text p {
+  font-size: .93rem; line-height: 1.8; color: var(--ink-soft); margin-bottom: 1rem;
+}
+
+.neuro-pillars { display: flex; flex-direction: column; gap: 1rem; }
+.neuro-pillar {
+  background: var(--white); border-radius: 10px; padding: 1.2rem 1.4rem;
+  border: 1px solid transparent;
+  display: flex; gap: 1rem; align-items: flex-start;
+  transition: border-color .2s, transform .2s;
+}
+.neuro-pillar:hover { border-color: var(--gold); transform: translateX(4px); }
+.pillar-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.pillar-content {}
+.pillar-name { font-size: .85rem; font-weight: 600; color: var(--ink); margin-bottom: .25rem; }
+.pillar-desc { font-size: .8rem; line-height: 1.6; color: var(--ink-soft); }
+
+/* ══════════════════════════════════════
+   PARA QUEM É
+══════════════════════════════════════ */
+#para-quem {
+  background: var(--ink); padding: 7rem 2rem;
+}
+.para-quem-header { text-align: center; margin-bottom: 3.5rem; }
+.para-quem-header .eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.para-quem-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--white);
+}
+
+.profiles-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+.profile-card {
+  border: 1px solid rgba(201,168,76,.15); border-radius: 12px; padding: 1.6rem;
+  transition: border-color .25s, background .25s;
+}
+.profile-card:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,.04);
+}
+.profile-emoji { font-size: 1.8rem; margin-bottom: .8rem; }
+.profile-title {
+  font-size: .92rem; font-weight: 600; color: var(--white); margin-bottom: .5rem;
+}
+.profile-desc {
+  font-size: .8rem; line-height: 1.6; color: rgba(255,255,255,.5);
+}
+
+.not-for {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 10px; padding: 1.5rem 2rem;
+  display: flex; gap: 1.5rem; align-items: flex-start;
+}
+.not-for-label {
+  font-family: 'DM Mono', monospace; font-size: .62rem;
+  letter-spacing: .14em; text-transform: uppercase; color: #6B7280;
+  white-space: nowrap; margin-top: 2px;
+}
+.not-for-text {
+  font-size: .83rem; line-height: 1.65; color: rgba(255,255,255,.4);
+}
+
+/* ══════════════════════════════════════
+   DEPOIMENTOS
+══════════════════════════════════════ */
+#depoimentos {
+  background: var(--cream); color: var(--ink); padding: 7rem 2rem;
+}
+.depo-header { text-align: center; margin-bottom: 3.5rem; }
+.depo-header .eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.depo-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; color: var(--ink);
+}
+.depo-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+}
+.depo-card {
+  background: var(--white); border-radius: 12px; padding: 1.8rem;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .2s, box-shadow .2s;
+}
+.depo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.08);
+}
+.depo-stars { color: var(--gold); font-size: .85rem; margin-bottom: 1rem; }
+.depo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem; font-weight: 300; font-style: italic;
+  line-height: 1.65; color: var(--ink); margin-bottom: 1.2rem;
+}
+.depo-author { display: flex; gap: .8rem; align-items: center; }
+.depo-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--gold-pale); display: flex; align-items: center;
+  justify-content: center; font-size: .85rem; font-weight: 600;
+  color: var(--gold); flex-shrink: 0; border: 1px solid var(--gold);
+}
+.depo-name { font-size: .82rem; font-weight: 600; color: var(--ink); }
+.depo-role { font-size: .72rem; color: var(--ink-faint); margin-top: 1px; }
+
+/* ══════════════════════════════════════
+   OFERTA / PREÇO
+══════════════════════════════════════ */
+#oferta {
+  background: var(--ink); padding: 7rem 2rem;
+  position: relative; overflow: hidden;
+}
+#oferta::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.oferta-inner {
+  max-width: 620px; margin: 0 auto; text-align: center;
+  position: relative;
+}
+.oferta-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+}
+.oferta-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300;
+  color: var(--white); line-height: 1.15; margin-bottom: 1rem;
+}
+.oferta-headline em { font-style: italic; color: var(--gold-lt); }
+
+.price-card-main {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--gold); border-radius: 16px;
+  padding: 2.5rem; margin: 2.5rem 0; text-align: left;
+  position: relative;
+}
+.price-badge-main {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: var(--ink);
+  font-family: 'DM Mono', monospace; font-size: .65rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .3rem 1.2rem; border-radius: 20px; white-space: nowrap;
+}
+
+.price-row { display: flex; align-items: baseline; gap: .8rem; margin-bottom: .5rem; }
+.price-original {
+  font-family: 'DM Sans', sans-serif; font-size: 1rem;
+  color: rgba(255,255,255,.3); text-decoration: line-through;
+}
+.price-current {
+  font-family: 'Cormorant Garamond', serif; font-size: 3.5rem;
+  font-weight: 600; color: var(--gold); line-height: 1;
+}
+.price-note {
+  font-size: .78rem; color: rgba(255,255,255,.45); margin-bottom: 1.8rem;
+  font-family: 'DM Mono', monospace;
+}
+
+.includes-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+.includes-list li {
+  display: flex; gap: .8rem; align-items: flex-start;
+  font-size: .88rem; color: rgba(255,255,255,.75);
+  line-height: 1.5;
+}
+.includes-list li::before {
+  content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0;
+}
+.includes-list li strong { color: var(--white); }
+
+.btn-buy {
+  display: block; width: 100%; text-align: center;
+  background: var(--gold); color: var(--ink);
+  font-size: .85rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  padding: 1.2rem 2rem; border-radius: 4px; border: none; cursor: none;
+  text-decoration: none; margin-top: 2rem;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 0 0 0 rgba(201,168,76,0);
+}
+.btn-buy:hover {
+  background: var(--gold-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(201,168,76,.3);
+}
+.btn-buy-sub {
+  font-size: .72rem; color: rgba(255,255,255,.35);
+  text-align: center; margin-top: .8rem;
+  font-family: 'DM Mono', monospace;
+}
+
+.guarantee {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: rgba(255,255,255,.03); border-radius: 10px;
+  padding: 1.2rem 1.4rem; margin-top: 1.5rem;
+  border: 1px solid rgba(255,255,255,.07);
+}
+.guarantee-icon { font-size: 1.4rem; flex-shrink: 0; }
+.guarantee-text { font-size: .82rem; line-height: 1.6; color: rgba(255,255,255,.55); }
+.guarantee-text strong { color: var(--white); }
+
+/* ══════════════════════════════════════
+   FAQ
+══════════════════════════════════════ */
+#faq {
+  background: var(--cream); color: var(--ink); padding: 7rem 2rem;
+}
+.faq-header { text-align: center; margin-bottom: 3.5rem; }
+.faq-header .eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.faq-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; color: var(--ink);
+}
+.faq-list { max-width: 680px; margin: 0 auto; }
+.faq-item {
+  border-bottom: 1px solid rgba(0,0,0,.09); padding: 1.4rem 0; cursor: none;
+}
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.faq-question {
+  font-size: .95rem; font-weight: 500; color: var(--ink); line-height: 1.4;
+}
+.faq-toggle {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.15); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; color: var(--gold); transition: transform .3s, background .2s;
+}
+.faq-item.open .faq-toggle { transform: rotate(45deg); background: var(--gold-pale); }
+.faq-answer {
+  font-size: .87rem; line-height: 1.75; color: var(--ink-soft);
+  max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s;
+  padding-top: 0;
+}
+.faq-item.open .faq-answer { max-height: 300px; padding-top: .9rem; }
+
+/* ══════════════════════════════════════
+   FOOTER CTA
+══════════════════════════════════════ */
+#footer-cta {
+  background: var(--ink); padding: 6rem 2rem;
+  text-align: center; position: relative; overflow: hidden;
+}
+#footer-cta::before {
+  content: '';
+  position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 300px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(201,168,76,.08) 0%, transparent 70%);
+}
+.footer-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: .65rem;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+}
+.footer-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 300;
+  color: var(--white); line-height: 1.1; margin-bottom: 1.5rem;
+}
+.footer-headline em { font-style: italic; color: var(--gold-lt); }
+
+footer {
+  background: #08080A; padding: 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: .9rem;
+  letter-spacing: .18em; color: rgba(255,255,255,.35); text-transform: uppercase;
+}
+.footer-copy {
+  font-size: .72rem; color: rgba(255,255,255,.25);
+  font-family: 'DM Mono', monospace;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .problema-grid, .neuro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .semanas-grid { grid-template-columns: 1fr; }
+  .profiles-grid { grid-template-columns: 1fr 1fr; }
+  .depo-grid { grid-template-columns: 1fr; }
+  .format-box { grid-template-columns: 1fr 1fr; }
+  .hero-stats { gap: 1.5rem; }
+  nav { padding: 1rem 1.2rem; }
+  footer { flex-direction: column; gap: .5rem; text-align: center; }
+  body { cursor: auto; }
+  .cursor { display: none; }
+  .nav-cta, .btn-primary, .btn-buy { cursor: pointer; }
+  .faq-item { cursor: pointer; }
+}
+@media (max-width: 500px) {
+  .profiles-grid { grid-template-columns: 1fr; }
+  .format-box { grid-template-columns: 1fr 1fr; }
+  .not-for { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Protocolo Presença</div>
+  <a href="#oferta" class="nav-cta">Quero o Protocolo</a>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════ -->
+<section id="hero">
+  <div class="hero-line"></div>
+  <div class="container">
+    <div class="hero-eyebrow reveal">Baseado em neuroplasticidade · Para profissionais corporativos</div>
+    <h1 class="hero-headline reveal reveal-delay-1">
+      Em 21 dias,<br>
+      <em>sua presença</em><br>
+      <span class="outline-text">vai falar</span><br>
+      antes de você.
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      Um protocolo de oratória, postura e autoridade — 10 minutos por dia — para quem já tem o conteúdo e quer que o mundo finalmente perceba isso.
+    </p>
+    <div class="hero-cta-group reveal reveal-delay-3">
+      <a href="#oferta" class="btn-primary">Começar agora por R$ 47</a>
+      <a href="#solucao" class="btn-ghost">Ver como funciona</a>
+    </div>
+    <div class="hero-stats reveal reveal-delay-4">
+      <div class="stat-item">
+        <div class="stat-number">21</div>
+        <div class="stat-label">Dias de Protocolo</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">10'</div>
+        <div class="stat-label">Por Dia</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Dimensões Trabalhadas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Impacto na Carreira</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROBLEMA ══════════════════════════ -->
+<section id="problema">
+  <div class="container">
+    <div class="problema-grid">
+      <div class="problema-text reveal">
+        <div class="eyebrow">O problema</div>
+        <h2>Você tem o conteúdo. <em>Mas a sala não sente sua presença.</em></h2>
+        <p>Competência técnica abre a porta. Presença executiva determina quem fica na sala — e quem lidera a conversa.</p>
+        <p>O problema raramente é o que você diz. É como você aparece antes de abrir a boca.</p>
+      </div>
+      <div class="pain-list reveal reveal-delay-2">
+        <div class="pain-item">
+          <span class="pain-x">×</span>
+          <span class="pain-text">Nervosismo que engole sua voz no momento que mais importa</span>
+        </div>
+        <div class="pain-item">
+          <span class="pain-x">×</span>
+          <span class="pain-text">Postura que encolhe sob pressão, mesmo quando você está certo</span>
+        </div>
+        <div class="pain-item">
+          <span class="pain-x">×</span>
+          <span class="pain-text">Ideias brilhantes que não chegam ao outro com o peso que merecem</span>
+        </div>
+        <div class="pain-item">
+          <span class="pain-x">×</span>
+          <span class="pain-text">Autoridade que precisa ser justificada repetidamente</span>
+        </div>
+        <div class="pain-item">
+          <span class="pain-x">×</span>
+          <span class="pain-text">Sensação de que outros com menos preparo influenciam mais</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUÇÃO ══════════════════════════ -->
+<section id="solucao">
+  <div class="container">
+    <div class="solucao-header reveal">
+      <div class="eyebrow">A solução</div>
+      <h2>Três semanas.<br><em>Três dimensões.</em><br>Uma transformação.</h2>
+    </div>
+
+    <div class="semanas-grid">
+      <div class="semana-card reveal reveal-delay-1" data-num="1">
+        <div class="semana-label">Semana 1 · Dias 1–7</div>
+        <div class="semana-title">Vencendo o Nervosismo</div>
+        <div class="semana-desc">Técnicas de respiração, âncoras de estado e exposição progressiva para transformar ansiedade em presença calma.</div>
+        <div class="semana-days">
+          <span class="day-pill">Diagnóstico</span>
+          <span class="day-pill">Respiração 4-6</span>
+          <span class="day-pill">Âncora</span>
+          <span class="day-pill">Pausas</span>
+          <span class="day-pill">Exposição</span>
+        </div>
+      </div>
+      <div class="semana-card reveal reveal-delay-2" data-num="2">
+        <div class="semana-label">Semana 2 · Dias 8–14</div>
+        <div class="semana-title">Presença & Postura</div>
+        <div class="semana-desc">Propriocepção, gestualidade e linguagem corporal que comunicam liderança antes de qualquer palavra.</div>
+        <div class="semana-days">
+          <span class="day-pill">Consciência</span>
+          <span class="day-pill">Gatilhos</span>
+          <span class="day-pill">Gestos</span>
+          <span class="day-pill">Olhar</span>
+          <span class="day-pill">Movimento</span>
+        </div>
+      </div>
+      <div class="semana-card reveal reveal-delay-3" data-num="3">
+        <div class="semana-label">Semana 3 · Dias 15–21</div>
+        <div class="semana-title">Autoridade & Influência</div>
+        <div class="semana-desc">Regulação emocional, meta-observação e linguagem de liderança para influenciar com naturalidade.</div>
+        <div class="semana-days">
+          <span class="day-pill">Mindfulness</span>
+          <span class="day-pill">Enquadramento</span>
+          <span class="day-pill">Escuta</span>
+          <span class="day-pill">Assertividade</span>
+          <span class="day-pill">Síntese</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="format-box reveal">
+      <div class="format-item">
+        <div class="format-icon">📄</div>
+        <div class="format-value">PDF</div>
+        <div class="format-label">Formato</div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon">⏱</div>
+        <div class="format-value">10–15'</div>
+        <div class="format-label">Por dia</div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon">📧</div>
+        <div class="format-value">7</div>
+        <div class="format-label">Emails de apoio</div>
+      </div>
+      <div class="format-item">
+        <div class="format-icon">⚡</div>
+        <div class="format-value">Imediato</div>
+        <div class="format-label">Acesso</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEURO ══════════════════════════ -->
+<section id="neuro">
+  <div class="container">
+    <div class="neuro-grid">
+      <div class="neuro-text reveal">
+        <div class="eyebrow">A ciência por trás</div>
+        <h2>Não é motivação. É neuroplasticidade.</h2>
+        <p>O cérebro muda fisicamente com prática intencional e repetida. Cada dia do protocolo ativa mecanismos específicos que tornam novos comportamentos automáticos.</p>
+        <p>21 dias não é um número mágico — é o tempo mínimo documentado para que padrões neurais se consolidem com prática diária consistente.</p>
+      </div>
+      <div class="neuro-pillars reveal reveal-delay-2">
+        <div class="neuro-pillar">
+          <div class="pillar-icon">🧬</div>
+          <div class="pillar-content">
+            <div class="pillar-name">Mielinização</div>
+            <div class="pillar-desc">Quanto mais você repete, mais rápida e automática fica a transmissão neural — até o novo comportamento se tornar natural.</div>
+          </div>
+        </div>
+        <div class="neuro-pillar">
+          <div class="pillar-icon">✂️</div>
+          <div class="pillar-content">
+            <div class="pillar-name">Poda Sináptica</div>
+            <div class="pillar-desc">O cérebro elimina rotas que você não usa e fortalece as que usa. Cada prática deliberada decide quem você se torna.</div>
+          </div>
+        </div>
+        <div class="neuro-pillar">
+          <div class="pillar-icon">🌙</div>
+          <div class="pillar-content">
+            <div class="pillar-name">Consolidação no Sono</div>
+            <div class="pillar-desc">O que importa é a frequência dos estímulos, não a duração. O cérebro consolida mudança durante o sono — por isso 10 min/dia superam 2h esporádicas.</div>
+          </div>
+        </div>
+        <div class="neuro-pillar">
+          <div class="pillar-icon">🎯</div>
+          <div class="pillar-content">
+            <div class="pillar-name">Estado Emocional</div>
+            <div class="pillar-desc">Aprender com presença e intenção acelera a mudança. O protocolo foi desenhado para ativar estados emocionais positivos em cada prática.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARA QUEM ══════════════════════ -->
+<section id="para-quem">
+  <div class="container">
+    <div class="para-quem-header reveal">
+      <div class="eyebrow">Para quem é</div>
+      <h2>Este protocolo foi feito para você se...</h2>
+    </div>
+    <div class="profiles-grid">
+      <div class="profile-card reveal reveal-delay-1">
+        <div class="profile-emoji">💼</div>
+        <div class="profile-title">Profissional em ascensão</div>
+        <div class="profile-desc">Você tem entregas sólidas mas sente que sua presença em reuniões e apresentações não reflete sua competência real.</div>
+      </div>
+      <div class="profile-card reveal reveal-delay-2">
+        <div class="profile-emoji">🧭</div>
+        <div class="profile-title">Líder ou gestor</div>
+        <div class="profile-desc">Você já lidera uma equipe mas quer ampliar seu impacto — ser percebido como referência, não apenas como responsável.</div>
+      </div>
+      <div class="profile-card reveal reveal-delay-3">
+        <div class="profile-emoji">🎯</div>
+        <div class="profile-title">Especialista técnico</div>
+        <div class="profile-desc">Você domina profundamente sua área mas sente dificuldade em comunicar esse domínio com a autoridade que ele merece.</div>
+      </div>
+    </div>
+    <div class="not-for reveal">
+      <div class="not-for-label">Não é para você se</div>
+      <div class="not-for-text">Você busca resultados sem prática consistente, quer uma solução mágica de um dia, ou acredita que presença é um dom inato que não pode ser desenvolvido. Neuroplasticidade exige repetição — sem isso, nenhum material funciona.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DEPOIMENTOS ══════════════════ -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="depo-header reveal">
+      <div class="eyebrow">Resultados reais</div>
+      <h2>Quem já aplicou o Protocolo</h2>
+    </div>
+    <div class="depo-grid">
+      <div class="depo-card reveal reveal-delay-1">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-text">"Na primeira semana já percebi diferença nas reuniões. Passei a usar as pausas conscientemente e o impacto foi imediato — as pessoas começaram a me ouvir de um jeito diferente."</div>
+        <div class="depo-author">
+          <div class="depo-avatar">AM</div>
+          <div>
+            <div class="depo-name">Ana M.</div>
+            <div class="depo-role">Gerente de Operações · São Paulo</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card reveal reveal-delay-2">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-text">"Nunca pensei que 10 minutos por dia pudessem mudar tanto. Na semana 3 fiz uma apresentação para a diretoria que sempre me travava — e pela primeira vez me senti completamente presente."</div>
+        <div class="depo-author">
+          <div class="depo-avatar">RC</div>
+          <div>
+            <div class="depo-name">Ricardo C.</div>
+            <div class="depo-role">Coordenador de Projetos · Curitiba</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card reveal reveal-delay-3">
+        <div class="depo-stars">★★★★★</div>
+        <div class="depo-text">"O que diferencia este protocolo é a base científica. Não é 'acredite em você' — é entender como o cérebro funciona e usar isso a seu favor. Prática, direto ao ponto e funciona."</div>
+        <div class="depo-author">
+          <div class="depo-avatar">FL</div>
+          <div>
+            <div class="depo-name">Fernanda L.</div>
+            <div class="depo-role">Especialista em Supply Chain · BH</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OFERTA ══════════════════════════ -->
+<section id="oferta">
+  <div class="container">
+    <div class="oferta-inner">
+      <div class="oferta-eyebrow reveal">Oferta de lançamento · Vagas limitadas</div>
+      <h2 class="oferta-headline reveal reveal-delay-1">
+        Tudo que você precisa<br>para começar <em>hoje.</em>
+      </h2>
+
+      <div class="price-card-main reveal reveal-delay-2">
+        <div class="price-badge-main">🏷 Early Bird — primeiros 7 dias</div>
+        <div class="price-row">
+          <span class="price-original">R$ 67</span>
+          <span class="price-current">R$ 47</span>
+        </div>
+        <div class="price-note">pagamento único · acesso imediato · sem assinatura</div>
+        <ul class="includes-list">
+          <li><strong>PDF Completo</strong> — 21 dias detalhados com base neurobiológica, prática, micro-hábito e reflexão noturna</li>
+          <li><strong>Checklist Diário Imprimível</strong> — acompanhe seu progresso dia a dia</li>
+          <li><strong>Sequência de 7 Emails de Apoio</strong> — conteúdo e motivação nos momentos certos</li>
+          <li><strong>Guia de Gravação</strong> — bônus para calibrar sua evolução ao longo dos 21 dias</li>
+          <li><strong>Acesso Vitalício</strong> — volte sempre que precisar relançar o protocolo</li>
+        </ul>
+        <a href="#" class="btn-buy">Quero o Protocolo Presença agora</a>
+        <div class="btn-buy-sub">Pagamento seguro via Hotmart · Cartão, Pix ou Boleto</div>
+        <div class="guarantee">
+          <div class="guarantee-icon">🛡</div>
+          <div class="guarantee-text"><strong>Garantia de 7 dias.</strong> Se nos primeiros 7 dias você sentir que o protocolo não é para você, devolvemos 100% do seu investimento. Sem perguntas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-header reveal">
+      <div class="eyebrow">Dúvidas frequentes</div>
+      <h2>Perguntas & Respostas</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-question">Preciso ter experiência prévia em oratória ou liderança?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">Não. O protocolo foi desenhado para profissionais que já têm competência técnica mas querem desenvolver presença executiva. Você não precisa de nenhuma base prévia — apenas disposição para praticar 10 minutos por dia.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-question">Como funciona a entrega? Recebo algo físico?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">O produto é 100% digital. Imediatamente após a compra você recebe um email com o link para baixar o PDF e o acesso à sequência de emails de apoio começa automaticamente.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-question">Realmente dá para ver resultado em 21 dias?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">Sim — mas com uma condição: consistência. A neuroplasticidade é real e documentada. Quem pratica 10 minutos todos os dias começa a perceber mudanças ainda na primeira semana. Os resultados mais profundos emergem na semana 3, quando as três dimensões se integram.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-question">Funciona para quem trabalha remotamente?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">Perfeitamente. Várias práticas do protocolo foram pensadas especificamente para o ambiente remoto — presença em câmera, contato visual em videochamadas, postura no home office. O digital amplifica qualquer falha de presença, e o protocolo trabalha isso diretamente.</div>
+      </div>
+      <div class="faq-item reveal reveal-delay-4" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <span class="faq-question">E se eu não conseguir fazer todos os dias?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">O protocolo tem estrutura semanal, então se você perder um dia, simplesmente continua no próximo. O que não funciona é pular semanas inteiras. Se precisar reiniciar, o acesso é vitalício — você pode relançar o protocolo quantas vezes quiser.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER CTA ══════════════════ -->
+<section id="footer-cta">
+  <div class="container" style="position:relative;">
+    <div class="footer-eyebrow reveal">Última chamada</div>
+    <h2 class="footer-headline reveal reveal-delay-1">
+      Todo dia sem presença<br>é um dia em que<br><em>outra pessoa influencia</em><br>no seu lugar.
+    </h2>
+    <a href="#oferta" class="btn-primary reveal reveal-delay-2" style="margin-top:2rem;display:inline-block;">
+      Começar agora por R$ 47
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Protocolo Presença</div>
+  <div class="footer-copy">© 2026 · Todos os direitos reservados</div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, .faq-item, .pain-item, .semana-card, .profile-card, .depo-card, .neuro-pillar').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+});
+
+// Nav scroll
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// FAQ
+function toggleFaq(item) {
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
